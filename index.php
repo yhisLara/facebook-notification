@@ -10,12 +10,32 @@
   </script>
 </head>
 <body>
+  <script>
+    function notify(){
+        var id = "<?php echo $_SESSION["id"];?>";
+        $.ajax({
+          type:"POST",
+          data:id,
+          url:"visto.php",
+          success:function(donen4){
+            alert(donen4);
+            if(donen4 == "evet"){
+              $(".mesajlar").empty();
+              $(".mesajlar").append(0);
+            }
+            else{
+              $(".mesajlar").empty();
+            }
+          }
+        });
+      }
+  </script>
   <?php if(isset($_SESSION["oturum"])){?>
 <div id="header">
   <div class="header">
     <ul class="ust_sec">
       <li class="kisiler"></li>
-      <li class="mesajlar">1</li>
+      <li class="mesajlar" onclick="notify()"></li>
       <li class="bildirimler"></li>
     </ul>
   </div>
